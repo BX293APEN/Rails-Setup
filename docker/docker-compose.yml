@@ -54,7 +54,7 @@ services:                                   # 作成したいコンテナを列�
     env_file: .env
     image: nouchka/sqlite3
     volumes:
-      - ${VOLUME}/config/db/:/root/db/
+      - ${VOLUME}/${PROJECT_NAME}_db/:/root/db/
     environment:
       POSTGRES_PASSWORD: ${PASSWORD}
     networks:

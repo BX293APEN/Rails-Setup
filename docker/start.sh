@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 rm -f "/home/${USER_NAME}/${WS}/${APPNAME}/tmp/pids/server.pid"
 

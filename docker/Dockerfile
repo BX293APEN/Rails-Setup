@@ -19,7 +19,7 @@ ENV GROUP_ID=1001
 RUN apt update && \
     apt upgrade -y && \
     apt install -y \
-    sudo nano iproute2 iputils-ping locales && \
+    sudo nano iproute2 iputils-ping locales dos2unix && \
     useradd -m -s /bin/bash -u ${USER_ID} ${USER_NAME} && \
     usermod -aG sudo ${USER_NAME} && \
     echo "root:${PASSWORD}" | chpasswd && \
@@ -30,7 +30,8 @@ RUN apt update && \
 RUN update-locale LANG=${LANG}
 
 COPY ${ENTRY_POINT} /home/${USER_NAME}/${ENTRY_DIR}/${ENTRY_POINT}
-RUN chmod +x /home/${USER_NAME}/${ENTRY_DIR}/${ENTRY_POINT}
+RUN dos2unix /home/${USER_NAME}/${ENTRY_DIR}/${ENTRY_POINT} && \
+    chmod +x /home/${USER_NAME}/${ENTRY_DIR}/${ENTRY_POINT}
 
 WORKDIR /home/${USER_NAME}/${WS}/${APPNAME}/
 
